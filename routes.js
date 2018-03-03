@@ -16,6 +16,11 @@ const app = express();
         next();
     });
 
+    app.get('/test', (req, res) => {
+        res.send('happy days!');
+    });
+
+
     app.get('/', (req, res) => {
         res.send('GET Hello World!');
     });

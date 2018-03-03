@@ -29,17 +29,9 @@ if (app.get('env') == 'production') {
     app.use(morgan('dev'));
   } 
 
-
-
 // load the cookie-parsing middleware
 //app.use(cookieParser());
 
-
-
 app.use(routes);
 
-
-
 app.listen(port, () => console.log(`Example app listening on port ${port}`));
-
-
