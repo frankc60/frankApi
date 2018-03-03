@@ -1,11 +1,18 @@
 //app.js
 
 const express = require("express");
-const cookieParser = require('cookie-parser');
-const bodyParser = require('body-parser');
+//const cookieParser = require('cookie-parser');
 const morgan = require('morgan');
+const fs = require('fs');
+
 
 const app = express();
+
+// create a write stream (in append mode)
+let accessLogStream = fs.createWriteStream( `${__dirname}/logs/morgan.log`, {flags: 'a'});
+
+
+
 
 const port = process.env.PORT || 3000;
 //console.log(process.env.PORT);
@@ -13,18 +20,26 @@ const port = process.env.PORT || 3000;
 
 const routes = require('./routes'); //routes.js
 
-app.use(morgan('combined'));
+// You can set morgan to log differently depending on your environment
+if (app.get('env') == 'production') {
+    //only stream to log if statusCode greater than 400, eg. 404
+    app.use(morgan('common', { skip: function(req, res) { return res.statusCode < 400 }, stream: accessLogStream }));
+  } else {
+    //are not in production, so log everything, for development and bug fixing
+    app.use(morgan('dev'));
+  } 
+
+
 
 // load the cookie-parsing middleware
-app.use(cookieParser());
+//app.use(cookieParser());
 
-// load the body-parsing middleware
-app.use(bodyParser());
+
 
 app.use(routes);
 
 
 
-app.listen(port, () => console.log(`Example app listening on port ${port}`))
+app.listen(port, () => console.log(`Example app listening on port ${port}`));
 
 

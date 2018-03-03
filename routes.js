@@ -1,6 +1,13 @@
 //routes.js
+
 const express = require("express");
+//const bodyParser = require('body-parser');
+
 const app = express();
+
+// load the body-parsing middleware
+//app.use(bodyParser());
+
 
     //run for ALL requests
     app.use(function (req, res, next) {
