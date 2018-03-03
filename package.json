@@ -1,0 +1,19 @@
+{
+  "name": "frankapi",
+  "version": "1.0.0",
+  "description": "crud api ",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/frankc60/frankApi.git"
+  },
+  "author": "frankc60",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/frankc60/frankApi/issues"
+  },
+  "homepage": "https://github.com/frankc60/frankApi#readme"
+}
