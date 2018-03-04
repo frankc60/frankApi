@@ -24,7 +24,7 @@ describe('http request', function() {
       });
 
       it('should return 200', function (done) {
-        request.post('http://localhost:3000', function (err, res, body){
+        request.delete('http://localhost:3000', function (err, res, body){
           chai.expect(res.statusCode).to.equal(200);
             //chai.expect(res.body).to.equal('happy days!');
             done();
@@ -48,7 +48,7 @@ describe('http request', function() {
         });
 });
 
-describe('db connection', function() {
+describe('DB Connection', function(done) {
   before(function (done) {
     mongoose.connect('mongodb://localhost/frankApi');
     const db = mongoose.connection;
@@ -60,7 +60,7 @@ describe('db connection', function() {
   });
 });
 
-describe('Test Database', function(done) {
+describe('Create DB Entry', function(done) {
   //Save object with 'name' value of 'Mike"
   it('save document to mongo db with mongoose', function(done) {
     var travisTest = new Note({ title: 'travisTest' });
@@ -69,7 +69,7 @@ describe('Test Database', function(done) {
   });
 });
 
-describe('Find document in Database', function(done) {
+describe('Find Document in Database', function(done) {
   //Save object with 'name' value of 'Mike"
   it('find document in mongo db with mongoose', function(done) {
     //var travisTest = new Note({ title: 'travisTest', "ssfsa":34 });
