@@ -2,30 +2,32 @@
 const Note = require("./model/mongoose");
 
 const express   =   require("express");
+const router = express.Router();
 const bodyParser  =   require("body-parser");
 
-const app = express();
+//const app = express();
 
-app.use(bodyParser.urlencoded({extended:false}));
-app.use(bodyParser.json());
+//allow handling of json
+router.use(bodyParser.urlencoded({extended:false}));
+router.use(bodyParser.json());
 
     //run for ALL requests
-    app.use(function (req, res, next) {
+    router.use(function (req, res, next) {
         //console.log(`Timestamp: ${new Date(Date.now())}`);
         //morgan is displaying connection info!
         next();
     });
 
-    app.get('/test', (req, res) => {
+    router.get('/test', (req, res) => {
         res.send('happy days!');
     });
 
 
-    app.get('/', (req, res) => {
+    router.get('/', (req, res) => {
         res.send('GET Hello World!');
     });
 
-    app.post('/', (req, res) => {
+    router.post('/', (req, res) => {
         let note = req.body;
         res.send('POST Hello World! ' + JSON.stringify(note));
         //---------------------------------------------------------
@@ -39,12 +41,12 @@ app.use(bodyParser.json());
 
     });
 
-    app.delete('/', (req, res) => {
+    router.delete('/', (req, res) => {
         res.send('DELETE Hello World!');
     });
 
-    app.put('/', (req, res) => {
+    router.put('/', (req, res) => {
         res.send('PUT Hello World!');
     });
 
-module.exports = app;
+module.exports = router;

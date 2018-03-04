@@ -12,7 +12,7 @@ const app = express();
 //--------------------------------------------------------------------------------------------
 //use middleware
 app.use(morgan);
-app.use(routes);
+app.use("/",routes);
 
 
 const port = process.env.PORT || 3000;
