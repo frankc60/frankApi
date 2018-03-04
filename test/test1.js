@@ -5,7 +5,7 @@ const server = require('../app.js');
 
 describe('server response', function () {
   before(function () {
-    server.listen(3000);
+  //  server.listen(3000);
   });
 
   after(function () {
@@ -14,7 +14,7 @@ describe('server response', function () {
 });
 describe('http request', function() {
       it('should return 200', function (done) {
-        request.get('http://localhost:3000/test', function (err, res, body){
+        request('http://localhost:3000/test', function (err, res, body){
             chai.expect(res.statusCode).to.equal(200);
               chai.expect(res.body).to.equal('happy days!');
               done();
