@@ -1,15 +1,17 @@
 //var assert = require('assert');
 const request = require('request');
 const chai = require('chai');
-const server = require('../app.js');
+require('../app.js');
 const Note  = require("../model/mongoose");
+
+
 describe('server response', function () {
   before(function () {
   //  server.listen(3000);
   });
 
   after(function () {
-    server.close();
+//    server.close();
   });
 });
 describe('http request', function() {

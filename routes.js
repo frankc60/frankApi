@@ -1,13 +1,13 @@
 //routes.js
+const Note = require("./model/mongoose");
 
-const express = require("express");
-//const bodyParser = require('body-parser');
+const express   =   require("express");
+const bodyParser  =   require("body-parser");
 
 const app = express();
 
-// load the body-parsing middleware
-//app.use(bodyParser());
-
+app.use(bodyParser.urlencoded({extended:false}));
+app.use(bodyParser.json());
 
     //run for ALL requests
     app.use(function (req, res, next) {
@@ -26,7 +26,17 @@ const app = express();
     });
 
     app.post('/', (req, res) => {
-        res.send('POST Hello World!');
+        let note = req.body;
+        res.send('POST Hello World! ' + JSON.stringify(note));
+        //---------------------------------------------------------
+        var postNote = new Note(note);
+        console.log(`postNote title: ${postNote.title}`); // 'Silence'
+
+        postNote.save(function (err, silence) {
+            if (err) return console.error(`MongoDB Error ${err}`);
+            console.log("postNote saved to db.");
+        });
+
     });
 
     app.delete('/', (req, res) => {
