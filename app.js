@@ -13,8 +13,8 @@ var silence = new Note({ title: 'Silence' });
 console.log(`silence name: ${silence.title}`); // 'Silence'
 
 silence.save(function (err, silence) {
-  if (err) return console.error(err);
-  console.log("silence saved to db.")
+  if (err) return console.error(`MongoDB Error ${err}`);
+  console.log("silence saved to db.");
 });
 //---------------------------------------------------------
 

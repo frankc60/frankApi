@@ -2,7 +2,7 @@
 const request = require('request');
 const chai = require('chai');
 const server = require('../app.js');
-
+const Note  = require("../model/mongoose");
 describe('server response', function () {
   before(function () {
   //  server.listen(3000);
@@ -44,7 +44,45 @@ describe('http request', function() {
             done();
           });
         });
-
-
-
 });
+
+describe('db connection', function() {
+  before(function (done) {
+    mongoose.connect('mongodb://localhost/frankApi');
+    const db = mongoose.connection;
+    db.on('error', console.error.bind(console, 'connection error'));
+    db.once('open', function() {
+      console.log('We are connected to frankApi database!');
+      done();
+    });
+  });
+});
+
+describe('Test Database', function(done) {
+  //Save object with 'name' value of 'Mike"
+  it('save document to mongo db with mongoose', function(done) {
+    var travisTest = new Note({ title: 'travisTest' });
+    
+    travisTest.save(done);
+  });
+});
+
+describe('Find document in Database', function(done) {
+  //Save object with 'name' value of 'Mike"
+  it('find document in mongo db with mongoose', function(done) {
+    //var travisTest = new Note({ title: 'travisTest', "ssfsa":34 });
+    
+    Note.find({ 'title': "travisTest" }, function (err, docs) {
+      // docs is an array
+      if(err) {
+        console.log(err);
+      } else {
+        console.log(docs);
+      }
+      done();
+    });
+
+    //travisTest.save(done);
+  });
+});
+
