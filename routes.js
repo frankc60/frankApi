@@ -24,25 +24,41 @@ router.use(bodyParser.json());
 
 
     router.get('/', (req, res) => {
-        res.send('GET Hello World!');
+        //res.send('GET Hello World!');
+        Note.find({}, function (err, docs) {
+            if (err) throw(`MongoDB Error ${err}`);
+            res.send(JSON.stringify(docs));
+          });
     });
 
     router.post('/', (req, res) => {
         let note = req.body;
-        res.send('POST Hello World! ' + JSON.stringify(note));
+        var data = {
+            firstName: req.body.fName,
+            lastName: req.body.lName,
+            username: req.body.username,
+            email: req.body.email,
+            password: req.body.password,
+            bio: req.body.bio
+          };
+
+
+        
         //---------------------------------------------------------
         var postNote = new Note(note);
         console.log(`postNote title: ${postNote.title}`); // 'Silence'
 
+     
         postNote.save(function (err, silence) {
-            if (err) return console.error(`MongoDB Error ${err}`);
+            if (err) console.log(`MongoDB Error ${err}`);
             console.log("postNote saved to db.");
+            res.send('POST Hello World! ' + JSON.stringify(note));
         });
 
     });
 
-    router.delete('/', (req, res) => {
-        res.send('DELETE Hello World!');
+    router.delete('/:id', (req, res) => {
+        res.send(`DELETE ${req.params.id} - Hello World!`);
     });
 
     router.put('/', (req, res) => {

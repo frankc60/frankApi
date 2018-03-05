@@ -21,5 +21,14 @@ const noteSchema = mongoose.Schema({
   
 const Note = db.model('Note', noteSchema);
   
+//is this needed, does it work correctly?? eg. if mongo isn't running
+/*noteSchema.pre('save', function(error, doc, next) {
+    if (error.name === 'MongoError' && error.code === 11000) {
+      next(new Error('There was a duplicate key error'));
+    } else {
+      next(error);
+    }
+  });
+*/
 
 module.exports = Note;
