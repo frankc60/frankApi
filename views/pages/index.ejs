@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <% include ../partials/head %>
+</head>
+<body class="container">
+
+<header>
+    <% include ../partials/header %>
+</header>
+
+<main>
+    <div class="jumbotron">
+        <h1><%= tagline %></h1>
+        <p>Welcome to the frankc60 Notes app</p>
+
+        <ul>
+            <% data.forEach(function(rec) { %>
+                <li><%= rec.title %> - <%= rec._id %></li>
+            <% }); %>
+        </ul>
+        
+        <div class="input-group">
+            <span class="input-group-addon">Title</span>
+            <input id="ttl" type="text" class="form-control" name="ttl" placeholder="Title of Note">
+        </div>
+        
+          <div class="checkbox">
+            <label><input type="checkbox" value="done">Done</label>
+          </div>
+          
+          <div class="form-group">
+            <label for="note">Note:</label>
+            <textarea class="form-control" rows="3" id="note"></textarea>
+          </div>
+
+          <button type="submit" class="btn-lg btn-primary">Primary</button>
+        
+
+    </div>
+</main>
+
+<footer>
+    <% include ../partials/footer %>
+</footer>
+
+</body>
+</html>

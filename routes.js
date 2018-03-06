@@ -25,9 +25,18 @@ router.use(bodyParser.json());
 
     router.get('/', (req, res) => {
         //res.send('GET Hello World!');
+            
         Note.find({}, function (err, docs) {
             if (err) throw(`MongoDB Error ${err}`);
-            res.send(JSON.stringify(docs));
+
+            var tagline = "Notes";
+        
+            res.render('pages/index', {
+                tagline: tagline,
+                data: docs
+            });
+
+           // res.send(JSON.stringify(docs));
           });
     });
 

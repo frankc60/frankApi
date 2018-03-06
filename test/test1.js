@@ -23,9 +23,9 @@ describe('http request', function() {
           });
       });
 
-      it('should return 200', function (done) {
+      it('should return 404', function (done) {
         request.delete('http://localhost:3000', function (err, res, body){
-          chai.expect(res.statusCode).to.equal(200);
+          chai.expect(res.statusCode).to.equal(404);
             //chai.expect(res.body).to.equal('happy days!');
             done();
         });

@@ -9,10 +9,16 @@ const routes = require('./routes'); //routes.js
 
 const app = express();
 
+
+// set the view engine to ejs
+app.set('view engine', 'ejs');
+
 //--------------------------------------------------------------------------------------------
 //use middleware
 app.use(morgan);
 app.use("/",routes);
+
+
 
 
 const port = process.env.PORT || 3000;
