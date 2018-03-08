@@ -70,8 +70,8 @@ router.use(bodyParser.json());
         res.send(`DELETE ${req.params.id} - Hello World!`);
     });
 
-    router.put('/', (req, res) => {
-        res.send('PUT Hello World!');
+    router.put('/:id', (req, res) => {
+        res.send(`PUT ${req.params.id} Hello World!`);
     });
 
 module.exports = router;
