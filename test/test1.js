@@ -1,19 +1,28 @@
 //var assert = require('assert');
 const request = require('request');
 const chai = require('chai');
-require('../app.js');
+var app = require('../app.js');
 const Note  = require("../model/mongoose");
+var http = require('http');
 
 
-describe('server response', function () {
+const port = process.env.PORT || 3000;
+
+
+describe('hooks', function () {
   before(function () {
-  //  server.listen(3000);
-  });
+      console.log("start server on port "+port);
+      app.set('port', port);
+
+      var server = http.createServer(app);
+      server.listen(3000);
+  });   
 
   after(function () {
-//    server.close();
-  });
-});
+    // server.close();
+     console.log("the end...");
+   });
+
 describe('http request', function() {
       it('should return 200', function (done) {
         request('http://localhost:3000/test', function (err, res, body){
@@ -88,3 +97,7 @@ describe('Find Document in Database', function(done) {
   });
 });
 
+
+
+
+});

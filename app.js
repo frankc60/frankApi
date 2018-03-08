@@ -29,7 +29,10 @@ app.use(favicon(__dirname + '/public/images/favicon.ico'));
 app.use("/",routes);
 //if doesn't find route from above then if it returns and continues, it is a 404, handle below:
 app.use(function (req, res, next) {
-    return res.send('error 404');
+    //if we get here, then no other routes have got the route, so is a 404.
+       res.status(404);
+       res.send('error 404');
+   
 });
 
 
