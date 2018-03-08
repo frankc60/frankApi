@@ -27,11 +27,15 @@ app.use(morgan);
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 app.use("/",routes);
+//if doesn't find route from above then if it returns and continues, it is a 404, handle below:
+app.use(function (req, res, next) {
+    return res.send('error 404');
+});
 
 
-
-const port = process.env.PORT || 3000;
 //console.log(process.env.PORT);
 //in linux, from bash, >export PORT=8080
 
-app.listen(port, () => console.log(`frankApi listening on port ${port}`));
+//app.listen(port, () => console.log(`frankApi listening on port ${port}`));
+
+module.exports = app;

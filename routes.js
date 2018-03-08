@@ -15,7 +15,7 @@ router.use(bodyParser.json());
     router.use(function (req, res, next) {
         //console.log(`Timestamp: ${new Date(Date.now())}`);
         //morgan is displaying connection info!
-        next();
+        next(); //haven't sent headers to client with render, send, etc, so need to call next() to pass to next handler.
     });
 
     router.get('/test', (req, res) => {
@@ -23,7 +23,7 @@ router.use(bodyParser.json());
     });
 
 
-    router.get('/', (req, res) => {
+    router.get('/', (req, res, next) => {
         //res.send('GET Hello World!');
             
         Note.find({}, function (err, docs) {
@@ -36,6 +36,7 @@ router.use(bodyParser.json());
                 data: docs
             });
 
+            
            // res.send(JSON.stringify(docs));
           });
     });

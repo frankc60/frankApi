@@ -4,7 +4,8 @@
   "description": "crud api ",
   "main": "app.js",
   "scripts": {
-    "test": "mocha --exit"
+    "test": "mocha --exit",
+    "start": "node bin/www"
   },
   "repository": {
     "type": "git",
