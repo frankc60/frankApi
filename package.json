@@ -4,9 +4,9 @@
   "description": "crud api ",
   "main": "app.js",
   "scripts": {
-    "test": "mocha --exit",
+    "test": "npm run precommit && mocha --exit",
     "start": "node bin/www",
-    "precommit": "prettier --write '*.js'"
+    "precommit": "prettier --write '*.js' 'test/*.js' 'model/*.js'"
   },
   "repository": {
     "type": "git",
