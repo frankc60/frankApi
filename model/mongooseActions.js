@@ -1,7 +1,7 @@
 /** @prettier */
 let NoteSchema = require("./mongooseSchema");
 
-let mongooseAction = {
+let mongooseActions = {
     verson: 1.0,
     tagline: "Party",
     post(note, callback) {
@@ -18,10 +18,14 @@ let mongooseAction = {
     test: "test string",
     find(note, callback) {
         NoteSchema.find(note, function(err, docs) {
-            callback(err, docs);
+
+            NoteSchema.count(note, function(err, cnt) {
+                console.log(`${cnt} documents returned to query.`);
+            });
+        callback(err, docs);
         });
     },
     test2: "test2 string"
 };
 
-module.exports = mongooseAction;
+module.exports = mongooseActions;
