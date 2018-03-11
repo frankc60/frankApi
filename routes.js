@@ -26,7 +26,7 @@ router.get("/test", (req, res, next) => {
 
 router.get("/", (req, res, next) => {
     mongoose.find({}, (err, docs) => {
-        if (err) throw `MongoDB Error ${err}`;
+        if (err) next(new Error(err));
 
         let tagline = "NoteTaking";
 
@@ -49,7 +49,7 @@ router.post("/", (req, res, next) => {
     };
 
     mongoose.post(note, (err, data) => {
-        if (err) throw new Error(err);
+        if (err) next(new Error(err));
         res.send(`POST success: ${data}`);
     });
 });
@@ -67,7 +67,7 @@ router.put("/:id", (req, res, next) => {
 router.get("/title/:title", (req, res, next) => {
     //let id = req.params.title;
     mongoose.find({ title: new RegExp(req.params.title, "i") }, (err, docs) => {
-        if (err) throw `MongoDB Error ${err}`;
+        if (err) next(new Error(err));
 
         let tagline = "NoteTaking";
 

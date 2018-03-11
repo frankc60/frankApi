@@ -22,7 +22,7 @@ app.use("/", routes);
 
 //error handling
 app.use(function(err, req, res, next) {
-    console.error(err.stack);
+    console.error(`500 error sent, error stack: ${err.stack}`);
     res.status(500).send(`error 500: ${err}`);
 });
 

@@ -18,11 +18,10 @@ let mongooseActions = {
     test: "test string",
     find(note, callback) {
         NoteSchema.find(note, function(err, docs) {
-
             NoteSchema.count(note, function(err, cnt) {
                 console.log(`${cnt} documents returned to query.`);
             });
-        callback(err, docs);
+            callback(err, docs);
         });
     },
     test2: "test2 string"
