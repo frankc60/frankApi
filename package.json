@@ -12,6 +12,7 @@
     "type": "git",
     "url": "git+https://github.com/frankc60/frankApi.git"
   },
+  
   "author": "frankc60",
   "license": "ISC",
   "bugs": {
