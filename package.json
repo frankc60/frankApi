@@ -6,7 +6,7 @@
   "scripts": {
     "test": "npm run precommit && mocha --exit",
     "start": "node bin/www",
-    "precommit": "prettier --write '*.js' 'test/*.js' 'model/*.js'"
+    "precommit": "prettier --write '*.js' 'test/*.js' 'model/*.js' 'bin/www'"
   },
   "repository": {
     "type": "git",
