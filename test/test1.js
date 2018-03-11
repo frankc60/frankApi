@@ -2,7 +2,7 @@
 const request = require('request');
 const chai = require('chai');
 var app = require('../app.js');
-const Note  = require("../model/mongoose");
+const mongoose = require("../model/mongooseActions");
 var http = require('http');
 
 
@@ -72,10 +72,11 @@ describe('DB Connection', function(done) {
 describe('Create DB Entry', function(done) {
   //Save object with 'name' value of 'Mike"
   it('save document to mongo db with mongoose', function(done) {
-    var travisTest = new Note({ title: 'travisTest' });
+    var travisTest = mongoose. post({ title: 'travisTest' }, () => {
     
-    travisTest.save(done);
+    done();
   });
+});
 });
 
 describe('Find Document in Database', function(done) {
@@ -83,10 +84,10 @@ describe('Find Document in Database', function(done) {
   it('find document in mongo db with mongoose', function(done) {
     //var travisTest = new Note({ title: 'travisTest', "ssfsa":34 });
     
-    Note.find({ 'title': "travisTest" }, function (err, docs) {
+    mongoose.find({ 'title': "travisTest" }, function (err, docs) {
       // docs is an array
       if(err) {
-        console.log(err);
+        console.error(err);
       } else {
         console.log(docs);
       }
