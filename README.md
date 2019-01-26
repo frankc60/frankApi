@@ -3,3 +3,8 @@
 # frankApi
 nodejs CRUD API using Mongoose, MongoDB.
 
+## What I learnt
+* designing and building a CRUD app.
+* Building APIs in Express
+* Integrating Express, End Point APIs, with CRUD methods
+* interfacing Mongoose & MongoDB with express and the APIs created.
